@@ -1,0 +1,47 @@
+# Environment & Secrets
+.env
+.env.local
+*.env
+
+# Portfolio doc (per request)
+portofolio.md
+portfolio.md
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# IDE & Editors
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# Java / Spring Boot
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# Python DRM Worker
+worker/venv/
+worker/**/__pycache__/
+worker/**/*.pyc
+*.pyo
+.pytest_cache/
+
+# Node / Vue Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+yarn-debug.log*
+
+# Uploaded Files & Temporary Storage
+backend/storage/
+backend/storage/watermarked/
+*.pdf
+scratch/

@@ -1,0 +1,41 @@
+server:
+  port: ${BACKEND_PORT:8080}
+
+spring:
+  application:
+    name: creator-platform-backend
+  
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/creator_platform}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres_secret}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties: 
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      ssl:
+        enabled: ${REDIS_SSL:false}
+
+# Custom Application Config from .env
+app:
+  jwt:
+    secret: ${JWT_SECRET:super_secret_jwt_key_minimum_32_characters_long_12345}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  payment:
+    server-key: ${PAYMENT_SERVER_KEY:}
+    client-key: ${PAYMENT_CLIENT_KEY:}
+    is-production: ${PAYMENT_IS_PRODUCTION:false}
+  cors:
+    allowed-origins: "http://localhost:${FRONTEND_PORT:5173}"

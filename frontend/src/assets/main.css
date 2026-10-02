@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-[#0b0f19] text-slate-100 antialiased selection:bg-cyan-500 selection:text-black;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Background Glow Meshes */
+.glow-mesh {
+    background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(168, 85, 247, 0.10) 0%, transparent 50%);
+}
+
+.glow-mesh-radial {
+    background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+    background: rgba(30, 41, 59, 0.85);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -10px rgba(14, 165, 233, 0.2);
+}
+
+.glass-nav {
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* Phone Mockup Frame */
+.phone-mockup {
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 10px #1e293b, 0 0 0 12px #334155;
+    border-radius: 44px;
+}
+
+/* Anti-Piracy Canvas Shield & Blur */
+.drm-canvas-container {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.unfocused-blur {
+    filter: blur(24px) grayscale(80%);
+    pointer-events: none;
+    transition: filter 0.2s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0f19;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
