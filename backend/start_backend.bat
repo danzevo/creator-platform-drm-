@@ -10,6 +10,7 @@ set "PATH=%JAVA_HOME%\bin;%PATH%"
 
 cd /d "%~dp0"
 
+set "SPRINGDOTENV_DIRECTORY=.."
 call mvnw.cmd spring-boot:run
 
 echo.
