@@ -1,0 +1,26 @@
+name: Deploy to VPS / InstaBox
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: SSH and Deploy to Remote Machine
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.VPS_HOST }} # InstaBox Public IP or Hostname
+        username: ${{ secrets.VPS_USER }}  # e.g., root or ubuntu
+        key: ${{ secrets.VPS_SSH_KEY }} # Private SSH Key
+        port: ${{ secrets.VPS_PORT || 22 }}
+        script: |
+          set -e
+          cd ~/creator-platform || git clone ${{ github.server_url }}/${{ github.repository }}.git ~/creator-platform
+          cd ~/creator-platform
+          git pull origin main
+          docker compose down
+          docker compose up -d --build
+          docker system prune -f
