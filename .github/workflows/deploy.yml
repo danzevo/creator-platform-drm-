@@ -1,4 +1,4 @@
-name: Deploy to VPS / InstaBox
+name: Deploy to InstaBox
 
 on:
   push:
@@ -9,13 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: SSH and Deploy to Remote Machine
+    - name: Run Deploy on InstaBox
+      env:
+        INSTABOX_API_KEY: ${{ secrets.INSTABOX_API_KEY }}
       run: |
-          # 1. Ensure ~/.ssh exists and generate a runner key for the handshake
-          mkdir -p ~/.ssh
-          ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519
-          # 2. Connect to InstaBox using the token
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${{ secrets.VPS_PORT }} ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+          npx --yes instabox@latest exec lumenbio -- bash -c "
           set -e
           cd ~/creator-platform || git clone ${{ github.server_url }}/${{ github.repository }}.git ~/creator-platform
           cd ~/creator-platform
@@ -23,4 +21,4 @@ jobs:
           docker compose down
           docker compose up -d --build
           docker system prune -f
-          EOF
+          "
