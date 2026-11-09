@@ -11,6 +11,10 @@ jobs:
     steps:
     - name: SSH and Deploy to Remote Machine
       run: |
+          # 1. Ensure ~/.ssh exists and generate a runner key for the handshake
+          mkdir -p ~/.ssh
+          ssh-keygen -t ed25519 -N "" -f ~/.ssh/id_ed25519
+          # 2. Connect to InstaBox using the token
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${{ secrets.VPS_PORT }} ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
           set -e
           cd ~/creator-platform || git clone ${{ github.server_url }}/${{ github.repository }}.git ~/creator-platform
