@@ -18,7 +18,8 @@ class Settings(BaseSettings):
     DB_NAME: str = os.getenv("DB_NAME", "creator_platform")
 
     DATABASE_URL: str = os.getenv("DATABASE_URL", f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
-    STORAGE_DIR: Path = Path(__file__).resolve().parents[2] / "backend" / "storage" / "watermarked"
+    # storage dir on docker-compose
+    STORAGE_DIR: Path = Path(os.getenv("STORAGE_DIR", str(Path(__file__).resolve().parent.parent.parent / "backend" / "storage" / "watermarked")))
 
 settings = Settings()
 settings.STORAGE_DIR.mkdir(parents=True, exist_ok=True)

@@ -1,5 +1,8 @@
 FROM python:3.11-slim
 
+
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
 # Install system dependencies required for PyMuPDF & psycopg2
@@ -15,6 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 
 # Create mount point for shared backend storage
-RUN mkdir -p /app/backend/storage/watermarked
+RUN mkdir -p /app/storage/watermarked
 
 CMD ["python", "-m", "app.main"]
