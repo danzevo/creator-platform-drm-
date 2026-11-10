@@ -13,7 +13,7 @@ jobs:
       env:
         INSTABOX_API_KEY: ${{ secrets.INSTABOX_API_KEY }}
       run: |
-          npx --yes instabox@latest exec lumenbio -- bash -c "
+          npx --yes instabox@latest exec lumenbio --timeout 600 -- bash -c "
           set -e
           cd ~/creator-platform || git clone ${{ github.server_url }}/${{ github.repository }}.git ~/creator-platform
           cd ~/creator-platform
