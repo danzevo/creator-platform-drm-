@@ -44,9 +44,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_NAME: ${DB_NAME:-creator_platform}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-creator_platform}
       DB_USER: ${DB_USER:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-postgres_secret}
       REDIS_HOST: redis
@@ -69,7 +67,7 @@ services:
       backend:
         condition: service_started
     environment:
-      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-postgres_secret}@postgres:5432/${DB_NAME:-creator_platform}
+      DATABASE_URL: postgresql+psycopg2://${DB_USER:-postgres}:${DB_PASSWORD:-postgres_secret}@postgres:5432/${DB_NAME:-creator_platform}
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
@@ -83,7 +81,7 @@ services:
     container_name: lumen_frontend
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "3000:80"
     depends_on:
       - backend
 
